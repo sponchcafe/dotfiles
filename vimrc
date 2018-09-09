@@ -29,6 +29,7 @@ imap jj <Esc>
 
 " Line numbers
 set number
+set rnu
 
 " Indentation setup
 set expandtab
