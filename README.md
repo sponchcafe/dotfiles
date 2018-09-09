@@ -1,5 +1,3 @@
 # Dotfiles
 
-## Description
-
-These are my personal dotfiles for a development workflow using vim and tmux.
+A collection of dotfiles for a development workflow using vim and tmux.
