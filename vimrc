@@ -22,8 +22,12 @@ imap <right> <nop>
 
 " syntax highlighting
 syntax enable
-" filetype recognotion
+" filetype recognition
 filetype plugin on
+
+" columns
+highlight ColorColumn ctermbg=236
+let &colorcolumn=join(range(81,999),",")
 
 imap jj <Esc>
 
