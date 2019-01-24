@@ -1,14 +1,19 @@
 #! /bin/bash
 
-mkdir -p ~/.vim/autoload
-mkdir -p ~/.vim/bundle
+if [  ! -d ~/.vim/bundle ]; then
+    echo "Creating ~/.vim/bundle"
+    mkdir -p ~/.vim/bundle
+fi
 
-curl https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim > ~/.vim/autoload/pathogen.vim
+echo "Fetching Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
+echo "Installing .vimrc"
 cp -i vimrc ~/.vimrc
+
+echo "Installing bundles"
+vim +PluginInstall +qall
+
+echo "Installing .tmux.conf"
 cp -i tmux.conf ~/.tmux.conf
 
-# install packages
-cd ~/.vim/bundle
-git clone https://github.com/scrooloose/nerdtree
-git clone https://github.com/terryma/vim-smooth-scroll
