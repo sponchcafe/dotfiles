@@ -3,7 +3,7 @@ set nocompatible
 
 " Vundle ----------------------------------------------------------------------
 filetype off
-set rtp+=~/.vim/bundle/vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle ------------------------------------------------
@@ -17,6 +17,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sensible'
+Plugin 'morhetz/gruvbox'
 
 " github repos of plugins -------------------------------------------------
 call vundle#end()            " required
@@ -25,6 +26,8 @@ filetype plugin indent on    " required
 " Vundle end ------------------------------------------------------------------
 
 syntax on
+colorscheme gruvbox
+set background=dark
 
 " update time e.g. for gitgutter faster update
 set updatetime=400
