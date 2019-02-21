@@ -4,7 +4,7 @@ set nocompatible
 " Vundle ----------------------------------------------------------------------
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle ------------------------------------------------
 Bundle 'gmarik/vundle'
@@ -33,8 +33,8 @@ set background=dark
 set updatetime=400
 
 " edit this file quickly
-noremap <F3> :e ~/.vimrc<CR>
-noremap <F4> :source ~/.vimrc<CR>
+noremap <F3> :e $MYVIMRC<CR>
+noremap <F4> :source $MYVIMRC<CR>
 
 " Disable Arrow keys in Escape mode
 map <up> <nop>
@@ -55,7 +55,7 @@ let &colorcolumn=join(range(80,999),",")
 " Line numbers
 set number
 set rnu " relative by default
-noremap 0 :set rnu!<CR>
+noremap <c-0> :set rnu!<CR>
 
 " Indentation setup
 set expandtab
@@ -69,7 +69,7 @@ set backspace=2
 set path+=**
 
 " FileBrowser 
-noremap <F2> :Lex<CR>
+noremap <F2> :Lex 16<CR>
 
 " smooth scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 3)<CR>
