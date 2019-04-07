@@ -61,6 +61,7 @@ noremap <c-0> :set rnu!<CR>
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set tabstop=4
 
 " backspae fix
 set backspace=2
@@ -76,6 +77,9 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 20, 3)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 20, 3)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 20, 3)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 3)<CR>
+
+" Hidden chars visualization
+set listchars=space:␣,eol:¬,nbsp:☒,tab:⇥\ 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " custom functions

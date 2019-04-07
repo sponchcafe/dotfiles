@@ -5,7 +5,7 @@ if [  ! -d ~/.vim/bundle ]; then
     mkdir -p ~/.vim/bundle
 fi
 
-if [  ! -d ~/.config/nvim]; then
+if [  ! -d ~/.config/nvim ]; then
     echo "Creating ~/.config/nvim"
     mkdir -p ~/.config/nvim
 fi
