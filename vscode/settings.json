@@ -1,0 +1,18 @@
+{
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Cobalt2",
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [ 80, 120 ],
+    "editor.renderWhitespace": "all",
+    "vim.useSystemClipboard": true,
+    "vim.highlightedyank.enable": true,
+    "vim.hlsearch": true,
+    "vim.statusBarColorControl": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/local/bin/nvim"
+}
