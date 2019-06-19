@@ -13,6 +13,14 @@
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f"
     },
-    "vim.enableNeovim": true,
-    "vim.neovimPath": "/usr/local/bin/nvim"
+    "terminal.integrated.shell.windows": "C:\\tools\\cygwin\\bin\\bash.exe",
+    "terminal.integrated.env.windows": {
+        "CHERE_INVOKING": "1"
+    },
+    "terminal.integrated.shellArgs.windows": [
+        "--login",
+        "-i"
+    ],
+    "breadcrumbs.enabled": true,
+    "cmake.cmakePath": "C:\\tools\\cygwin\\bin\\cmake.exe"
 }
