@@ -1,0 +1,6 @@
+[submodule "docker/Vundle.vim"]
+	path = docker/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "Vundle.vim"]
+	path = Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
