@@ -10,6 +10,9 @@ if [  ! -d ~/.config/nvim ]; then
     mkdir -p ~/.config/nvim
 fi
 
+echo "Installing .bash_profile"
+cp -i bash_profile ~/.bash_profile
+
 echo "Fetching Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
