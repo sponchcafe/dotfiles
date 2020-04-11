@@ -80,19 +80,3 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 3)<CR>
 
 " Hidden chars visualization
 set listchars=space:␣,eol:¬,nbsp:☒,tab:⇥\ 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" custom functions
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pass selection through python
-
-noremap <c-i> :call Python()<CR>
-
-function! Python() range
-    let code = "".shellescape(join(getline(a:firstline, a:lastline), "\n"))
-    execute a:firstline','a:lastline'd'
-    execute 'read !python -c' code
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
