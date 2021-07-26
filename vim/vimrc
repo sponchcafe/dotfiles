@@ -41,6 +41,16 @@ set updatetime=400
 noremap <F3> :e $MYVIMRC<CR>
 noremap <F4> :source $MYVIMRC<CR>
 
+let mapleader=" "
+noremap <leader><leader> :FZF<CR>
+noremap <leader><tab> <c-^><CR>
+noremap <leader><CR> :w<CR>
+noremap <Esc> :q<CR>
+noremap <Esc><Esc> :wq<CR>
+noremap <Esc><CR> :q!<CR>
+
+imap kj <Esc>
+
 " Disable Arrow keys in Escape mode
 map <up> <nop>
 map <down> <nop>
@@ -60,7 +70,7 @@ let &colorcolumn=join(range(80,999),",")
 " Line numbers
 set number
 set rnu " relative by default
-noremap <c-0> :set rnu!<CR>
+noremap <leader>n :set rnu!<CR>
 
 " Indentation setup
 set expandtab
