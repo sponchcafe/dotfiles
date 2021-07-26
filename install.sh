@@ -12,6 +12,7 @@ fi
 
 echo "Installing .config.fish"
 cp shell/fish/config.fish ~/.config/fish/config.fish
+cp shell/fish/functions/* ~/.config/fish/functions
 
 echo "Installing .vimrc"
 cp vim/vimrc ~/.vimrc
