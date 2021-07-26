@@ -10,8 +10,8 @@ if [  ! -d ~/.config/nvim ]; then
     mkdir -p ~/.config/nvim
 fi
 
-echo "Installing .bash_profile"
-cp shell/bash_profile ~/.bash_profile
+echo "Installing .config.fish"
+cp shell/fish/config.fish ~/.config/fish/config.fish
 
 echo "Installing .vimrc"
 cp vim/vimrc ~/.vimrc
