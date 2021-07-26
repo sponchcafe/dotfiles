@@ -1,29 +1,32 @@
 " modern viM, instead of 4i
 set nocompatible
 
-" Vundle ----------------------------------------------------------------------
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Plug ----------------------------------------------------------------------
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-" let Vundle manage Vundle ------------------------------------------------
-Bundle 'gmarik/vundle'
-
-" github repos of plugins -------------------------------------------------
-Bundle 'terryma/vim-smooth-scroll'
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sensible'
-Plugin 'morhetz/gruvbox'
+" Plugins will be downloaded under the specified directory.
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
 " github repos of plugins -------------------------------------------------
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plug 'terryma/vim-smooth-scroll'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'morhetz/gruvbox'
 
-" Vundle end ------------------------------------------------------------------
+call plug#end()
+
+" Plug end ------------------------------------------------------------------
 
 syntax on
 colorscheme gruvbox

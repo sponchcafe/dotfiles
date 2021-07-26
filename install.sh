@@ -11,20 +11,16 @@ if [  ! -d ~/.config/nvim ]; then
 fi
 
 echo "Installing .bash_profile"
-cp -i shell/bash_profile ~/.bash_profile
-
-echo "Installing Vundle"
-cp -r Vundle.vim/ ~/.vim/bundle
+cp shell/bash_profile ~/.bash_profile
 
 echo "Installing .vimrc"
-cp -i vim/vimrc ~/.vimrc
+cp vim/vimrc ~/.vimrc
+
+echo "Installing .tmux.conf"
+cp tmux/tmux.conf ~/.tmux.conf
 
 echo "Installing nvim config"
 cp vim/init.vim ~/.config/nvim/init.vim
 
 echo "Installing bundles"
-vim +PluginInstall +qall
-
-echo "Installing .tmux.conf"
-cp -i tmux/tmux.conf ~/.tmux.conf
-
+vim +PlugInstall +qall
