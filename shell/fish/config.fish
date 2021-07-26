@@ -1,7 +1,7 @@
 alias l='exa'
-alias la='exa -a'
-alias ll='exa -lah'
-alias ls='exa --color=auto'
+alias la='exa -la'
+alias ll='exa -l'
+alias lg='exa -l --git'
 alias tree='exa --tree'
 
 alias grep='rg'
