@@ -48,9 +48,6 @@ let mapleader=" "
 noremap <leader><leader> :FZF<CR>
 noremap <leader><tab> <c-^><CR>
 noremap <leader><CR> :w<CR>
-noremap <Esc> :q<CR>
-noremap <Esc><Esc> :wq<CR>
-noremap <Esc><CR> :q!<CR>
 
 imap kj <Esc>
 
