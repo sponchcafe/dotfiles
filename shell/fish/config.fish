@@ -12,3 +12,6 @@ alias glst='git log HEAD~1..HEAD'
 alias glhd='git log --oneline HEAD~10..HEAD'
 alias grbi='git rebase -i'
 alias gfix='git commit --amend --no-edit'
+
+alias vi='nvim'
+alias vim='nvim'
