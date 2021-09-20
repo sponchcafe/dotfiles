@@ -8,6 +8,8 @@ alias grep='rg'
 alias cat='bat'
 alias find='fd'
 
+alias gst='git status'
+alias glol='git log --oneline'
 alias glst='git log HEAD~1..HEAD'
 alias glhd='git log --oneline HEAD~10..HEAD'
 alias grbi='git rebase -i'
