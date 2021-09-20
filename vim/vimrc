@@ -19,6 +19,7 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
@@ -26,6 +27,7 @@ Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dag/vim-fish'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 
 call plug#end()
 

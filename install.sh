@@ -24,4 +24,4 @@ echo "Installing nvim config"
 cp vim/init.vim ~/.config/nvim/init.vim
 
 echo "Installing bundles"
-vim +PlugInstall +qall
+nvim +PlugInstall +qall
