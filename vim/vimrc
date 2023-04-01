@@ -25,6 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
 Plug 'dag/vim-fish'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'cespare/vim-toml', { 'branch': 'main' }
@@ -95,3 +96,5 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 20, 3)<CR>
 
 " Hidden chars visualization
 set listchars=space:␣,eol:¬,nbsp:☒,tab:⇥\ 
+
+let g:coc_global_extensions = ['coc-rust-analyzer']
