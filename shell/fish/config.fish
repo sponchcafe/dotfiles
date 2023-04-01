@@ -18,6 +18,12 @@ alias gfix='git commit --amend --no-edit'
 alias vi='nvim'
 alias vim='nvim'
 
+set fish_greeting
+
 function fish_prompt
     powerline shell left
 end
+
+fish_add_path ~/.cargo/bin
+
+neofetch
