@@ -25,3 +25,7 @@ cp vim/init.vim ~/.config/nvim/init.vim
 
 echo "Installing bundles"
 nvim +PlugInstall +qall
+
+# powerline
+pip install --user -r shell/powerline/requirements.txt
+cp -r shell/powerline/powerline ~/.config

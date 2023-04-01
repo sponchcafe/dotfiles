@@ -17,3 +17,7 @@ alias gfix='git commit --amend --no-edit'
 
 alias vi='nvim'
 alias vim='nvim'
+
+function fish_prompt
+    powerline shell left
+end
