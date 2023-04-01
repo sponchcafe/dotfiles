@@ -25,5 +25,3 @@ function fish_prompt
 end
 
 fish_add_path ~/.cargo/bin
-
-neofetch
