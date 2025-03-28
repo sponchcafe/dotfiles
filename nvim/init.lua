@@ -1,4 +1,4 @@
---[[
+--[[init.u
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -43,6 +43,13 @@ P.S. You can delete this when you're done too. It's your config now :)
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
+-- Basic (no plugin settings)
+vim.g.scrolloff = 100
+
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -171,6 +178,7 @@ require('lazy').setup({
         theme = 'onedark',
         component_separators = '|',
         section_separators = '',
+        path = 3,
       },
     },
   },
@@ -228,6 +236,26 @@ require('lazy').setup({
   },
   {
     "nvim-tree/nvim-web-devicons"
+  },
+  {
+    "stevearc/aerial.nvim",
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+  "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
   }
 
 
@@ -310,7 +338,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 vim.keymap.set('n', '<leader><Tab>', function() pcall(vim.cmd.e, '#') end, { desc = 'Go to alternate file' })
-vim.keymap.set('n', '<Tab><Tab>', function() vim.cmd("NvimTreeToggle") end, { desc = 'Toggle nvim tree' })
+vim.keymap.set('n', '<leader>nt', function() vim.cmd("NvimTreeToggle") end, { desc = 'Toggle nvim tree' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -341,10 +369,10 @@ pcall(require('telescope').load_extension, 'fzf')
 
 require('neoscroll').setup()
 
-local t = {}
-t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '300', [['sine']]}}
-t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '300', [['sine']]}}
-require('neoscroll.config').set_mappings(t)
+-- local t = {}
+-- t['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '300', [['sine']]}}
+-- t['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '300', [['sine']]}}
+-- require('neoscroll.config').set_mappings(t)
 
 require("nvim-web-devicons").setup()
 require("nvim-tree").setup({
@@ -390,8 +418,8 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').oldfiles, { desc = '[ ] Find recently opened files' })
 vim.keymap.set('n', '<leader><enter>', require('telescope.builtin').buffers, { desc = '[enter] Find existing buffers' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -400,14 +428,15 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>of', require('telescope.builtin').oldfiles, { desc = '[ ] Find recently opened files' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set("n", "<leader>ae", "<cmd>AerialToggle!<CR>")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -415,12 +444,15 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    auto_install = true,
+    modules = {},
+    sync_install = true,
+    ignore_install = {},
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = false,
-
     highlight = { enable = true },
+
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
     indent = { enable = true },
     incremental_selection = {
       enable = true,
@@ -449,20 +481,20 @@ vim.defer_fn(function()
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
+          ['#m'] = '@function.outer',
+          ['#]'] = '@class.outer',
         },
         goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
+          ['#M'] = '@function.outer',
+          ['#['] = '@class.outer',
         },
         goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          ['#m'] = '@function.outer',
+          ['#['] = '@class.outer',
         },
         goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
+          ['#M'] = '@function.outer',
+          ['#]'] = '@class.outer',
         },
       },
       swap = {
@@ -477,6 +509,16 @@ vim.defer_fn(function()
     },
   }
 end, 0)
+
+-- [[ Configure Aerial ]]
+require("aerial").setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+  end,
+})
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -523,16 +565,27 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+
+vim.keymap.set('n', '<Leader>tw', [[:%s/\s\+$//e<cr>]])
+
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
+require('which-key').add {
+    { "<leader>c", group = "[C]ode" },
+    { "<leader>c_", hidden = true },
+    { "<leader>d", group = "[D]ocument" },
+    { "<leader>d_", hidden = true },
+    { "<leader>g", group = "[G]it" },
+    { "<leader>g_", hidden = true },
+    { "<leader>h", group = "More git" },
+    { "<leader>h_", hidden = true },
+    { "<leader>r", group = "[R]ename" },
+    { "<leader>r_", hidden = true },
+    { "<leader>s", group = "[S]earch" },
+    { "<leader>s_", hidden = true },
+    { "<leader>w", group = "[W]orkspace" },
+    { "<leader>w_", hidden = true },
+  }
+
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -548,12 +601,25 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  clangd = {},
+  clangd = {
+    filetypes= {"cpp", "c", "hpp", "hxx", "hpp", "cxx"}
+  },
   -- gopls = {},
-  pyright = {},
-  rust_analyzer = {},
-  -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  -- pyright = { },
+  ruff = {
+    Lua = {
+      format = {
+        enable = false,
+      },
+    }
+  },
+  rust_analyzer = {
+    inlay_hints = {
+      enable = true,
+    },
+  },
+  ts_ls = {},
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
@@ -597,6 +663,12 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -616,15 +688,13 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+    ["<Tab>"] = vim.schedule_wrap(function(fallback)
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -636,6 +706,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = "copilot", group_index = 2 },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
